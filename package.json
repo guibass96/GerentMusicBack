@@ -1,0 +1,46 @@
+{
+  "name": "gerente-music-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/guibass96/GerentMusique.git"
+  },
+  "keywords": [
+    "Guibass*96"
+  ],
+  "author": "GUilherme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guibass96/GerentMusique/issues"
+  },
+  "homepage": "https://github.com/guibass96/GerentMusique#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.8",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jwt-simple": "^0.5.6",
+    "kalendar-vue": "^2.0.2",
+    "knex": "^0.15.2",
+    "knex-migrate": "^1.7.4",
+    "node-schedule": "^1.3.2",
+    "nodemailer": "^6.4.6",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "pg": "^7.18.1",
+    "pusher": "^3.0.0",
+    "vue-i18n": "^8.15.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
