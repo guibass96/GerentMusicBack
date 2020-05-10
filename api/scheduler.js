@@ -6,11 +6,22 @@ module.exports = app=>{
         cluster: 'us2',
         encrypted: true
       });*/
-    const get = (req,res)=>{
-        app.db('agenda')
-        .select('*')
-        .then(agenda => res.json(agenda))
-        .catch(err => res.status(500).send(err))
+    const get = (req,res) =>{
+        const event = { ...req.body }
+        if(req.params.id) event.id = req.params.id
+        if(event.id){
+            app.db('agenda')
+            .select('*')
+            .where({ idUsuarioCriou: event.id })
+            .then(agenda => res.json(agenda))
+            .catch(err => res.status(500).send(err))
+        }else{
+            app.db('agenda')
+            .select('*')
+            .then(agenda => res.json(agenda))
+            .catch(err => res.status(500).send(err))
+        }
+        
     }
     
     const save = (req, res) => {

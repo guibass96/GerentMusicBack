@@ -19,6 +19,7 @@ module.exports = app =>{
     
     app.route('/agenda/:id')
     .all(app.config.passaport.authenticate())
+    .get(app.api.scheduler.get)
     .post(app.api.scheduler.save)
 
     app.route('/agenda/:id')

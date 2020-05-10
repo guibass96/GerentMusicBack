@@ -1,16 +1,15 @@
 module.exports = app =>{
 
     const get = (req,res)=>{
-        app.db('metas_estrategias_estudo')
+        app.db('metas')
         .select('*')
         .then(meta => res.json(meta))
         .catch(err => res.status(500).send(err))
     }
     const getById = (req, res) => {
-        app.db('metas_estrategias_estudo')
+        app.db('metas')
             .where({ idAluno: req.params.id })
             .then(meta => {
-               
                 return res.json(meta)
             })
             .catch(err => res.status(500).send(err))
@@ -18,16 +17,17 @@ module.exports = app =>{
     const save = (req, res) => {
         const meta = { ...req.body }
         if(req.params.id) meta.id = req.params.id
-        console.log(meta)
+        
         if(meta.id){
            console.log("entrei")
-            app.db('metas_estrategias_estudo')
+            app.db('metas')
             .update(meta)
             .where({ id: meta.id })
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))
         }else{
-            app.db('metas_estrategias_estudo')
+            console.log(meta.id)
+            app.db('metas')
             .insert(meta)
             .then(_ => res.status(204).send())
             .catch(err => res.status(500).send(err))

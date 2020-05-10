@@ -28,11 +28,14 @@ module.exports = app =>{
 
         if(!req.originalUrl.startsWith('/users')) user.admin = false
         if(!req.user || !req.user.admin) user.admin = false
-
-        user.password = encryptPassword(user.password)
-       // console.log(user)
+       
+        if(user.password){
+            user.password = encryptPassword(user.password)
+            
+        }else{
+            delete user["password"]
+        }
         if(user.id){
-           console.log(user)
             app.db('users')
             .update(user)
             .where({ id: user.id })
