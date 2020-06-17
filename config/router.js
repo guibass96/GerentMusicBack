@@ -47,4 +47,14 @@ module.exports = app =>{
     .get(admin(app.api.users.getById))
     .put(admin(app.api.users.save))
 
+    app.route('/novaclasse')
+    .all(app.config.passaport.authenticate())
+    .get(admin(app.api.turma.get))
+    .post(admin(app.api.turma.save))
+
+    app.route('/novaclasse/:id') 
+    .all(app.config.passaport.authenticate())   
+    .put(admin(app.api.turma.save))
+    .delete(app.api.turma.remove)
+
 }
