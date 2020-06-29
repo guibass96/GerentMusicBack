@@ -12,7 +12,7 @@ module.exports = app=>{
           if(event.id){
               app.db('turma')
               .select('*')
-              .where({ idUsuarioCriou: event.id })
+              .where({ id: event.id })
               .then(agenda => res.json(agenda))
               .catch(err => res.status(500).send(err))
           }else{
@@ -31,7 +31,7 @@ module.exports = app=>{
           if(scheduler.id){
              console.log("tem valor")
               app.db('turma')
-              .update(scheduler)
+              .update({titulo:scheduler.titulo,disciplina:scheduler.disciplina})
               .where({ id: scheduler.id })
               .then(_ => res.status(204).send())
               .catch(err => res.status(500).send(err))
