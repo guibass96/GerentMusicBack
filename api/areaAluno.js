@@ -1,20 +1,11 @@
 module.exports = app=>{
-    var nodemailer = require('nodemailer');
-
-    var $usuario = 'guilhermebatista612@gmail.com';
-    var $senha = 'aqnh pwdl cwbe zlsa'; 
-    
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: $usuario,
-            pass: $senha
-        }
-    });
-    
-    var $destinatario = 'guilherme-batista2011@live.com';
-    
- 
+    /*  const  pusher = new Pusher({
+          appId: '967004',
+          key: 'ae6ab63bcd59f4609299',
+          secret: '3d85d06fde1ab39702b0',
+          cluster: 'us2',
+          encrypted: true
+        });*/
       const get = (req,res) =>{
           const event = { ...req.body }
           if(req.params.id) event.id = req.params.id
@@ -48,22 +39,7 @@ module.exports = app=>{
               console.log(scheduler)
               app.db('turma')
               .insert(scheduler)
-              .then(_ => {res.status(204).send()
-                var mailOptions = {
-                    from: $usuario,
-                    to: $destinatario,
-                    subject: 'Gerent School',
-                    html: `Olá, voce foi adicionado a uma nova turma <strong>${scheduler.titulo}</strong>`
-                };
-                
-                transporter.sendMail(mailOptions, function(error, info){
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        console.log('Email enviado: ' + info.response);
-                    }
-                });
-            })
+              .then(_ => res.status(204).send())
               .catch(err => res.status(500).send(err))
           }
          /* pusher.trigger('schedule', 'new-event', scheduler);

@@ -6,8 +6,8 @@ exports.up = function (knex, Promise) {
         table.string('professor')
         table.string('aluno')
         table.string('color')
-        table.string('disciplina')
-        
+        table.string('linkTurma')
+        table.string('disciplina')      
     })
 };
 
