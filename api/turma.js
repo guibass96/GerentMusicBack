@@ -53,7 +53,7 @@ module.exports = app=>{
                     from: $usuario,
                     to: $destinatario,
                     subject: 'Gerent School',
-                    html: `Olá, voce foi adicionado a uma nova turma <strong>${scheduler.titulo}</strong>`
+                    html: `Olá, você foi adicionado a uma nova turma <strong>${scheduler.titulo}</strong><br>`
                 };
                 
                 transporter.sendMail(mailOptions, function(error, info){
