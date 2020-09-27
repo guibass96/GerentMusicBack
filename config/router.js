@@ -57,4 +57,14 @@ module.exports = app =>{
     .put(admin(app.api.turma.save))
     .delete(app.api.turma.remove)
 
+    app.route('/mural')
+    .all(app.config.passaport.authenticate())
+    .get(admin(app.api.mural.get))
+    .post(admin(app.api.mural.save))
+
+    app.route('/mural/:id')
+    .all(app.config.passaport.authenticate())
+    .get(admin(app.api.mural.get))
+    .post(admin(app.api.mural.save))
+
 }
