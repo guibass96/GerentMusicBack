@@ -1,4 +1,8 @@
 const admin = require('./admin')
+const multer  = require('multer')
+const path = require('path')
+//const { storage } = require('googleapis/build/src/apis/storage')
+
 module.exports = app =>{
     app.post('/signup', app.api.users.save)
     app.post('/signin', app.api.auth.signin)
@@ -59,12 +63,38 @@ module.exports = app =>{
 
     app.route('/mural')
     .all(app.config.passaport.authenticate())
-    .get(admin(app.api.mural.get))
-    .post(admin(app.api.mural.save))
+    .get(app.api.mural.get)
+    .post(app.api.mural.save)
 
     app.route('/mural/:id')
     .all(app.config.passaport.authenticate())
-    .get(admin(app.api.mural.get))
-    .post(admin(app.api.mural.save))
+    .get(app.api.mural.getById)
+    .post(app.api.mural.save)
+
+
+    const storage = multer.diskStorage({
+
+     
+        destination: function(req,file,cb){
+            
+           cb(null,`uploads/${req.params.id}`)
+        },
+        filename:function(req,file,cb){
+            cb(null,file.originalname + Date.now() + path.extname(file.originalname))
+        }
+    })
+   
+    const upload = multer({storage})
+    app.post('/upload/:id',upload.array('files', 10),(req,res)=>{
+        const reqFiles = []
+        const url = req.protocol + '://' + req.get('host')
+        for (var i = 0; i < req.files.length; i++) {
+          reqFiles.push(url + '/uploads/'+req.params.id+'' + req.files[i].filename)
+          console.log('entrei')
+        }
+        
+    })
+    
+   
 
 }

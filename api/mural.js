@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt-nodejs')
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 module.exports = app =>{
 
     const get = (req,res)=>{
@@ -18,7 +20,7 @@ module.exports = app =>{
     const save = (req, res) => {
         const user = { ...req.body }
         if(req.params.id) user.id = req.params.id
-
+       console.log(user)
         if(user.id){
             app.db('mural')
             .update(user)

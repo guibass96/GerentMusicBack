@@ -63,6 +63,17 @@ module.exports = app=>{
                         console.log('Email enviado: ' + info.response);
                     }
                 });
+                
+                    const fs = require("fs")
+            
+                    fs.mkdir(`./uploads/${scheduler.linkTurma}`, { recursive: true }, function(err) {
+                      if (err) {
+                        console.log(err)
+                      } else {
+                        console.log("New directory successfully created.")
+                      }
+                    })
+                  
             })
               .catch(err => res.status(500).send(err))
           }
